@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="welcome">
+    <text>电 动 门 遥 控</text>
+  </view>
+  <view class="controller">
+    <button type="primary" disabled="{{disabled.open}}" bindtouchstart="open" bindtouchend="cancel"><text>开</text></button>
+    <button type="default" plain="true" disabled="{{disabled.stop}}" bindtouchstart="stop" bindtouchend="cancel"><text>停</text></button>
+    <button type="warn" disabled="{{disabled.close}}" bindtouchstart="close" bindtouchend="cancel"><text>关</text></button>
+  </view>
+</view>

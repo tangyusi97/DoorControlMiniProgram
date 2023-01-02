@@ -1,0 +1,21 @@
+/**index.wxss**/
+.welcome {
+  flex: 1;
+  font-size: 84rpx;
+  font-weight: bolder;
+}
+
+.controller {
+  flex: 3;
+}
+
+.controller > button > text{
+  font-size: 128rpx;
+  overflow: hidden;
+  vertical-align: 24%;
+}
+
+.controller > button {
+  width: 400rpx;
+  margin-top: 60rpx;
+}
