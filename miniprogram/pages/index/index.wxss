@@ -1,8 +1,9 @@
 /**index.wxss**/
 .welcome {
   flex: 1;
-  font-size: 84rpx;
+  font-size: 108rpx;
   font-weight: bolder;
+  letter-spacing: 10rpx;
 }
 
 .controller {
