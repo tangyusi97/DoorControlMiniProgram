@@ -70,6 +70,7 @@ const advertisingData: number[][] = [
 
 function controlling(server: WechatMiniprogram.BLEPeripheralServer | undefined, type: controlType) {
   if (!server) return;
+  wx.vibrateShort({type: 'heavy'});
   server.startAdvertising({
     advertiseRequest: {
       manufacturerData: [{
