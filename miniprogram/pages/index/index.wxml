@@ -1,11 +1,12 @@
 <!--index.wxml-->
 <view class="container">
   <view class="welcome">
-    <text>电动门遥控</text>
+    <text bindlongtap="enroll">电动门遥控</text>
   </view>
   <view class="controller">
-    <button type="primary" bindtouchstart="open" bindtouchend="cancel"><text>开</text></button>
-    <button type="default" plain="true" bindtouchstart="stop" bindtouchend="cancel"><text>停</text></button>
-    <button type="warn" bindtouchstart="close" bindtouchend="cancel"><text>关</text></button>
+    <button plain="true" bindtouchstart="open" bindtouchend="cancel"><text>开</text></button>
+    <button plain="true" bindtouchstart="stop" bindtouchend="cancel"><text>停</text></button>
+    <button plain="true" bindtouchstart="close" bindtouchend="cancel"><text>关</text></button>
+    <button type="primary" bindtouchstart="openAndClose" bindtouchend="cancel"><text style="font-size: 88rpx;">开一下</text></button>
   </view>
 </view>

@@ -11,7 +11,7 @@
 }
 
 .controller > button > text{
-  font-size: 128rpx;
+  font-size: 108rpx;
   overflow: hidden;
   vertical-align: 24%;
 }

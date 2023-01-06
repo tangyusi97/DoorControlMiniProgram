@@ -9,6 +9,7 @@ Page({
     wx.onBluetoothAdapterStateChange(checkBluetootEnable);
   },
   onShow() {
+    wx.showLoading({title: "加载中", mask: true});
     checkBluetootEnable() && wx.authorize({
       scope: 'scope.bluetooth',
       success() {
@@ -16,7 +17,8 @@ Page({
           mode: 'peripheral',
           success() {
             wx.createBLEPeripheralServer()
-              .then(res => app.globalData.BLEPeripheralServer = res.server);
+              .then(res => app.globalData.BLEPeripheralServer = res.server)
+              .then(() => wx.hideLoading());
           },
           fail(res) {
             console.log(res);
@@ -45,30 +47,51 @@ Page({
     });
   },
   open() {
-    controlling(app.globalData.BLEPeripheralServer, controlType.OPEN);
+    sendCMD(app.globalData.BLEPeripheralServer, controlType.OPEN);
   },
   stop() {
-    controlling(app.globalData.BLEPeripheralServer, controlType.STOP);
+    sendCMD(app.globalData.BLEPeripheralServer, controlType.STOP);
   },
   close() {
-    controlling(app.globalData.BLEPeripheralServer, controlType.CLOSE);
+    sendCMD(app.globalData.BLEPeripheralServer, controlType.CLOSE);
+  },
+  openAndClose() {
+    sendCMD(app.globalData.BLEPeripheralServer, controlType.OPENCLOSE);
   },
   cancel() {
     if (!app.globalData.BLEPeripheralServer) return;
     app.globalData.BLEPeripheralServer.stopAdvertising();
+  },
+  enroll() {
+    wx.showModal({
+      title: "注册指纹",
+      placeholderText: "请输入管理员密码",
+      editable: true,
+      success: res => {
+        if (res.content == 'hkjmbzd') {
+          sendCMD(app.globalData.BLEPeripheralServer, controlType.ENROLL);
+          setTimeout(this.cancel, 500);
+          return;
+        }
+        if (res.cancel) return;
+        wx.showToast({title: '密码错误', icon: 'error'});
+      }
+    });
   }
 })
 
 
-enum controlType { OPEN, STOP, CLOSE };
+enum controlType { OPEN, STOP, CLOSE, OPENCLOSE, ENROLL };
 
 const advertisingData: number[][] = [
   [0x6D, 0xB6, 0x43, 0x4F, 0x9E, 0x0F, 0x87, 0x91, 0x23, 0x6F, 0xCB, 0xCF, 0x65, 0xDA, 0x51, 0x3B],
   [0x6D, 0xB6, 0x43, 0x4F, 0x9E, 0x0F, 0x87, 0x91, 0x23, 0x6F, 0xCB, 0xCF, 0x65, 0xBA, 0x57, 0x58],
   [0x6D, 0xB6, 0x43, 0x4F, 0x9E, 0x0F, 0x87, 0x91, 0x23, 0x6F, 0xCB, 0xCF, 0x65, 0x7A, 0x5B, 0x9E],
+  [0x6D, 0xB6, 0x43, 0x4F, 0x9E, 0x0F, 0x87, 0x91, 0x23, 0x6F, 0xCB, 0xCF, 0x65, 0x87, 0x5E, 0xA4],
+  [0x6D, 0xB6, 0x43, 0x4F, 0x9E, 0x0F, 0x87, 0x91, 0x23, 0x6F, 0xCB, 0xCF, 0x65, 0xC9, 0x54, 0x8D],
 ]
 
-function controlling(server: WechatMiniprogram.BLEPeripheralServer | undefined, type: controlType) {
+function sendCMD(server: WechatMiniprogram.BLEPeripheralServer | undefined, type: controlType) {
   if (!server) return;
   wx.vibrateShort({type: 'heavy'});
   server.startAdvertising({
