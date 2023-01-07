@@ -9,8 +9,9 @@ Page({
     wx.onBluetoothAdapterStateChange(checkBluetootEnable);
   },
   onShow() {
-    wx.showLoading({title: "加载中", mask: true});
-    checkBluetootEnable() && wx.authorize({
+    if (!checkBluetootEnable() || app.globalData.BLEPeripheralServer) return;
+    wx.showLoading({ title: "加载中", mask: true });
+    wx.authorize({
       scope: 'scope.bluetooth',
       success() {
         wx.openBluetoothAdapter({
@@ -74,7 +75,7 @@ Page({
           return;
         }
         if (res.cancel) return;
-        wx.showToast({title: '密码错误', icon: 'error'});
+        wx.showToast({ title: '密码错误', icon: 'error' });
       }
     });
   }
@@ -93,7 +94,7 @@ const advertisingData: number[][] = [
 
 function sendCMD(server: WechatMiniprogram.BLEPeripheralServer | undefined, type: controlType) {
   if (!server) return;
-  wx.vibrateShort({type: 'heavy'});
+  wx.vibrateShort({ type: 'heavy' });
   server.startAdvertising({
     advertiseRequest: {
       manufacturerData: [{
