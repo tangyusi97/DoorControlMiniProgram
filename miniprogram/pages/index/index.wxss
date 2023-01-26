@@ -1,13 +1,22 @@
 /**index.wxss**/
-.welcome {
-  flex: 1;
+.title {
+  flex: 2;
+  display: flex;
+  align-items: center;
   font-size: 108rpx;
   font-weight: bolder;
   letter-spacing: 10rpx;
 }
 
+.tip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+
 .controller {
-  flex: 3;
+  flex: 5;
 }
 
 .controller > button > text{
@@ -18,5 +27,5 @@
 
 .controller > button {
   width: 400rpx;
-  margin-top: 60rpx;
+  margin-top: 50rpx;
 }

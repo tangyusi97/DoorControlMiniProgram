@@ -10,7 +10,7 @@ Page({
   },
   onShow() {
     if (!checkBluetootEnable() || app.globalData.BLEPeripheralServer) return;
-    wx.showLoading({ title: "加载中", mask: true });
+    wx.showLoading({ title: "正在初始化", mask: true });
     wx.authorize({
       scope: 'scope.bluetooth',
       success() {

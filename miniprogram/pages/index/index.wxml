@@ -1,12 +1,17 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="welcome">
-    <text bindlongtap="enroll">电动门遥控</text>
+  <view class="title">
+    <view><text bindlongtap="enroll">电动门遥控</text></view>
   </view>
   <view class="controller">
     <button plain="true" bindtouchstart="open" bindtouchend="cancel"><text>开</text></button>
     <button plain="true" bindtouchstart="stop" bindtouchend="cancel"><text>停</text></button>
     <button plain="true" bindtouchstart="close" bindtouchend="cancel"><text>关</text></button>
     <button type="primary" bindtouchstart="openAndClose" bindtouchend="cancel"><text style="font-size: 88rpx;">开一下</text></button>
+  </view>
+  <view class="tip">
+    <view>
+      <text bindlongtap="enroll">为保证信号稳定，请<text style="color: red;">长按</text>直至电动门响应后松开</text>
+    </view>
   </view>
 </view>
