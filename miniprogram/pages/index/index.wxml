@@ -11,7 +11,7 @@
   </view>
   <view class="tip">
     <view>
-      <text bindlongtap="enroll">为保证信号稳定，请<text style="color: red;">长按</text>直至电动门响应后松开</text>
+      <text bindlongtap="config">为保证信号稳定，请<text style="color: red;">长按</text>直至电动门响应后松开</text>
     </view>
   </view>
 </view>
