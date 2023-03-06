@@ -11,7 +11,12 @@
   </view>
   <view class="tip">
     <view>
-      <text bindlongtap="config">为保证信号稳定，请<text style="color: red;">长按</text>直至电动门响应后松开</text>
+      <text>为保证信号稳定，请<text style="color: red;">长按</text>直至电动门响应后松开</text>
     </view>
+    <view>
+      <text class="download" bindtap="download">APP下载链接</text>
+      <text bindlongtap="config">© 2023 Yusi</text>
+    </view>
+    <view style="height: 20rpx;" />
   </view>
 </view>

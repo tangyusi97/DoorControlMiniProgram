@@ -98,6 +98,9 @@ Page({
         wx.showToast({ title: '参数不合法', icon: 'error' });
       }
     });
+  },
+  download() {
+    wx.setClipboardData({ data: 'https://gitee.com/tangyusi97/DoorControlAPK/releases/download/v1.1.0/door-control.apk' })
   }
 })
 

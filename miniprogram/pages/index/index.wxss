@@ -11,22 +11,38 @@
 .tip {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   font-size: 30rpx;
   opacity: 60%;
+}
+
+.tip>view {
+  height: 50rpx;
+}
+
+.tip>view:nth-child(2) {
+  font-size: 24rpx;
+}
+
+.download {
+  margin-right: 30rpx;
+  color: navy;
+  text-decoration: underline;
 }
 
 .controller {
   flex: 5;
 }
 
-.controller > button > text{
+.controller>button>text {
   font-size: 108rpx;
   overflow: hidden;
   vertical-align: 24%;
 }
 
-.controller > button {
+.controller>button {
   width: 400rpx;
   margin-top: 50rpx;
 }
