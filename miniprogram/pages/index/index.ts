@@ -100,7 +100,7 @@ Page({
     });
   },
   download() {
-    wx.setClipboardData({ data: 'https://gitee.com/tangyusi97/DoorControlAPK/releases/download/v1.1.0/door-control.apk' })
+    wx.setClipboardData({ data: 'https://gitee.com/tangyusi97/DoorControlAPK/releases' })
   }
 })
 
